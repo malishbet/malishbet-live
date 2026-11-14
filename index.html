@@ -6,15 +6,21 @@
 <title>MALISHBET LIVE</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#10151f;color:white;font-family:Arial,sans-serif}
-header{background:#192536;padding:22px;text-align:center}
-h1{color:#42e69b;margin:0}
-nav{display:flex;justify-content:center;gap:18px;padding:16px;background:#202e40;flex-wrap:wrap}
-nav a{color:white;text-decoration:none}
-main{padding:20px;max-width:950px;margin:auto}
-h2{color:#42e69b}
-.sport{background:#202e40;padding:18px;margin:12px 0;border-radius:10px}
-footer{text-align:center;padding:25px;color:#9ba9bb}
+body{margin:0;background:#0b1220;color:#fff;font-family:Arial,sans-serif}
+header{background:#111d30;padding:25px 15px;text-align:center;border-bottom:2px solid #27d99a}
+h1{margin:0;color:#27d99a;font-size:30px;letter-spacing:2px}
+header p{color:#b7c5d8}
+nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:#17243a;padding:15px}
+nav a{color:white;text-decoration:none;padding:9px 12px;background:#263852;border-radius:7px}
+main{max-width:950px;margin:auto;padding:20px}
+h2{color:#27d99a}
+.intro{background:linear-gradient(120deg,#153b39,#1b2c48);padding:25px;border-radius:14px;margin-bottom:22px}
+.intro h2{font-size:25px;margin-top:0}
+.sports{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.sport{background:#17243a;border:1px solid #2b405d;border-radius:12px;padding:20px}
+.sport h3{margin:0 0 10px;color:#27d99a}
+.sport p{color:#b7c5d8;margin-bottom:0}
+footer{text-align:center;padding:25px;color:#9ba9bb;border-top:1px solid #263852;margin-top:25px}
 </style>
 </head>
 <body>
@@ -23,21 +29,26 @@ footer{text-align:center;padding:25px;color:#9ba9bb}
 <p>International Sports Results & Statistics</p>
 </header>
 <nav>
-<a href="#">Football</a>
-<a href="#">Basketball</a>
-<a href="#">Tennis</a>
-<a href="#">Volleyball</a>
-<a href="#">Hockey</a>
-<a href="#">Cricket</a>
+<a href="#football">Football</a>
+<a href="#basketball">Basketball</a>
+<a href="#tennis">Tennis</a>
+<a href="#volleyball">Volleyball</a>
+<a href="#hockey">Hockey</a>
+<a href="#cricket">Cricket</a>
 </nav>
 <main>
-<h2>Sports Center</h2>
-<div class="sport">⚽ Football — Live Scores</div>
-<div class="sport">🏀 Basketball — Results</div>
-<div class="sport">🎾 Tennis — Matches</div>
-<div class="sport">🏐 Volleyball — Results</div>
-<div class="sport">🏒 Hockey — Matches</div>
-<div class="sport">🏏 Cricket — Scores</div>
+<section class="intro">
+<h2>SPORTS CENTER</h2>
+<p>Worldwide sports results, fixtures and statistics — all in one place.</p>
+</section>
+<div class="sports">
+<div class="sport" id="football"><h3>⚽ Football</h3><p>Live scores, matches and league tables</p></div>
+<div class="sport" id="basketball"><h3>🏀 Basketball</h3><p>Results, fixtures and statistics</p></div>
+<div class="sport" id="tennis"><h3>🎾 Tennis</h3><p>Tournaments and match results</p></div>
+<div class="sport" id="volleyball"><h3>🏐 Volleyball</h3><p>Matches and competition results</p></div>
+<div class="sport" id="hockey"><h3>🏒 Hockey</h3><p>Scores and league standings</p></div>
+<div class="sport" id="cricket"><h3>🏏 Cricket</h3><p>Match scores and statistics</p></div>
+</div>
 </main>
 <footer>MALISHBET LIVE © 2026</footer>
 </body>
