@@ -1,55 +1,153 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MALISHBET LIVE</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#0b1220;color:#fff;font-family:Arial,sans-serif}
-header{background:#111d30;padding:25px 15px;text-align:center;border-bottom:2px solid #27d99a}
-h1{margin:0;color:#27d99a;font-size:30px;letter-spacing:2px}
-header p{color:#b7c5d8}
-nav{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;background:#17243a;padding:15px}
-nav a{color:white;text-decoration:none;padding:9px 12px;background:#263852;border-radius:7px}
-main{max-width:950px;margin:auto;padding:20px}
-h2{color:#27d99a}
-.intro{background:linear-gradient(120deg,#153b39,#1b2c48);padding:25px;border-radius:14px;margin-bottom:22px}
-.intro h2{font-size:25px;margin-top:0}
-.sports{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.sport{background:#17243a;border:1px solid #2b405d;border-radius:12px;padding:20px}
-.sport h3{margin:0 0 10px;color:#27d99a}
-.sport p{color:#b7c5d8;margin-bottom:0}
-footer{text-align:center;padding:25px;color:#9ba9bb;border-top:1px solid #263852;margin-top:25px}
+body{margin:0;background:#101318;color:white;font-family:Arial,sans-serif}
+#loader{position:fixed;inset:0;background:#101318;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s}
+.loadlogo{font-size:34px;font-weight:900;color:#20d99a;letter-spacing:2px}
+.loadsub{color:#aab5c2;margin:12px 0 30px;font-size:13px}
+.spinner{width:58px;height:58px;border:5px solid #29333c;border-top-color:#20d99a;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loadingtext{color:#20d99a;margin-top:22px;font-size:13px;letter-spacing:3px}
+@media(prefers-reduced-motion:reduce){.spinner{animation-duration:4s}}
+header{height:68px;background:#1b212a;display:flex;align-items:center;justify-content:space-between;padding:0 5%;border-bottom:1px solid #303945}
+.logo{font-size:24px;font-weight:900;color:#20d99a}
+.logo span{color:white}
+.live{color:#ff5555;font-size:12px}
+.container{max-width:1250px;margin:auto;padding:18px}
+nav{display:flex;gap:9px;overflow-x:auto;padding:12px 0;border-bottom:1px solid #303945}
+nav a{background:#242c36;color:white;text-decoration:none;padding:11px 15px;border-radius:6px;white-space:nowrap;font-size:13px}
+.hero{margin:20px 0;padding:28px;border-radius:12px;background:linear-gradient(120deg,#153d34,#263746)}
+.hero h1{margin:0 0 12px;font-size:28px}
+.hero p{color:#c4d2cf;line-height:1.6}
+.heading{font-size:18px;margin:27px 0 15px}
+.sports{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.sport{background:#202630;color:white;border:1px solid #303945;padding:16px 5px;border-radius:9px;cursor:pointer}
+.sport div{font-size:25px;margin-bottom:8px}
+.sport.active,.sport:hover{background:#20d99a;color:#101318}
+.layout{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:20px}
+.panel{background:#1b212a;border:1px solid #303945;border-radius:10px;overflow:hidden;margin-bottom:17px}
+.panelhead{padding:16px;border-bottom:1px solid #303945;font-weight:bold;display:flex;justify-content:space-between}
+.panelbody{padding:20px;color:#aeb7c4;text-align:center;line-height:1.7}
+.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.stat{background:#242c36;padding:18px;border-radius:8px}
+.stat strong{display:block;font-size:23px;color:#20d99a}
+.stat span{font-size:12px;color:#aeb7c4}
+footer{text-align:center;background:#1b212a;color:#9ba7b7;padding:25px;margin-top:30px}
+button{font-family:inherit}
+@media(max-width:700px){
+header{padding:0 14px}
+.container{padding:12px}
+.sports{grid-template-columns:repeat(3,1fr)}
+.layout{grid-template-columns:1fr}
+.hero h1{font-size:23px}
+}
 </style>
 </head>
 <body>
-<header>
-<h1>MALISHBET LIVE</h1>
-<p>International Sports Results & Statistics</p>
-</header>
-<nav>
-<a href="#football">Football</a>
-<a href="#basketball">Basketball</a>
-<a href="#tennis">Tennis</a>
-<a href="#volleyball">Volleyball</a>
-<a href="#hockey">Hockey</a>
-<a href="#cricket">Cricket</a>
-</nav>
-<main>
-<section class="intro">
-<h2>SPORTS CENTER</h2>
-<p>Worldwide sports results, fixtures and statistics — all in one place.</p>
-</section>
-<div class="sports">
-<div class="sport" id="football"><h3>⚽ Football</h3><p>Live scores, matches and league tables</p></div>
-<div class="sport" id="basketball"><h3>🏀 Basketball</h3><p>Results, fixtures and statistics</p></div>
-<div class="sport" id="tennis"><h3>🎾 Tennis</h3><p>Tournaments and match results</p></div>
-<div class="sport" id="volleyball"><h3>🏐 Volleyball</h3><p>Matches and competition results</p></div>
-<div class="sport" id="hockey"><h3>🏒 Hockey</h3><p>Scores and league standings</p></div>
-<div class="sport" id="cricket"><h3>🏏 Cricket</h3><p>Match scores and statistics</p></div>
+
+<div id="loader">
+<div class="loadlogo">MALISHBET</div>
+<div class="loadsub">INTERNATIONAL SPORTS CENTER</div>
+<div class="spinner"></div>
+<div class="loadingtext">YUKLANMOQDA...</div>
 </div>
-</main>
-<footer>MALISHBET LIVE © 2026</footer>
+
+<header>
+<div class="logo">MALISHBET <span>LIVE</span></div>
+<div class="live">● SPORTS CENTER</div>
+</header>
+
+<div class="container">
+<nav>
+<a href="#home">Bosh sahifa</a>
+<a href="#matches">Natijalar</a>
+<a href="#sports">Sport turlari</a>
+<a href="#stats">Statistika</a>
+<a href="#leagues">Ligalar</a>
+</nav>
+
+<section class="hero" id="home">
+<h1>WORLD SPORTS CENTER</h1>
+<p>Jahon sport olamidagi natijalar, musobaqalar va professional statistikalar bir joyda.</p>
+<div class="live">● MALISHBET LIVE</div>
+</section>
+
+<h2 class="heading" id="sports">SPORT TURLARI</h2>
+<div class="sports">
+<button class="sport active" onclick="choose(this,'Futbol')"><div>⚽</div>Futbol</button>
+<button class="sport" onclick="choose(this,'Basketbol')"><div>🏀</div>Basketbol</button>
+<button class="sport" onclick="choose(this,'Tennis')"><div>🎾</div>Tennis</button>
+<button class="sport" onclick="choose(this,'Voleybol')"><div>🏐</div>Voleybol</button>
+<button class="sport" onclick="choose(this,'Xokkey')"><div>🏒</div>Xokkey</button>
+<button class="sport" onclick="choose(this,'Kriket')"><div>🏏</div>Kriket</button>
+</div>
+
+<div class="layout">
+<div>
+<section class="panel" id="matches">
+<div class="panelhead">
+<span id="matchtitle">⚽ FUTBOL NATIJALARI</span>
+<span class="live">LIVE</span>
+</div>
+<div class="panelbody" id="matchbody">
+Hozircha natijalar manbasi ulanmagan.
+</div>
+</section>
+
+<section class="panel" id="leagues">
+<div class="panelhead">🏆 TURNIR JADVALLARI</div>
+<div class="panelbody">Xalqaro chempionatlar va ligalar jadvallari shu yerda ko‘rsatiladi.</div>
+</section>
+</div>
+
+<div>
+<section class="panel" id="stats">
+<div class="panelhead">📊 STATISTIKA</div>
+<div class="panelbody">
+<div class="statgrid">
+<div class="stat"><strong>06</strong><span>Sport turlari</span></div>
+<div class="stat"><strong>🌍</strong><span>Xalqaro portal</span></div>
+<div class="stat"><strong>LIVE</strong><span>Jonli markaz</span></div>
+<div class="stat"><strong>24/7</strong><span>Sport axboroti</span></div>
+</div>
+</div>
+</section>
+<section class="panel">
+<div class="panelhead">🌐 MALISHBET LIVE</div>
+<div class="panelbody">International Sports Results & Statistics</div>
+</section>
+</div>
+</div>
+</div>
+
+<footer>
+<div class="logo">MALISHBET LIVE</div>
+<p>International Sports Results & Statistics</p>
+<p>© 2026 MALISHBET</p>
+</footer>
+
+<script>
+window.addEventListener('load',function(){
+setTimeout(function(){
+const loader=document.getElementById('loader');
+loader.style.opacity='0';
+setTimeout(()=>loader.style.display='none',500);
+},1400);
+});
+
+function choose(btn,name){
+document.querySelectorAll('.sport').forEach(x=>x.classList.remove('active'));
+btn.classList.add('active');
+document.getElementById('matchtitle').textContent='🏆 '+name.toUpperCase()+' NATIJALARI';
+document.getElementById('matchbody').textContent=
+name+' natijalari ma’lumotlar manbasi ulangach ko‘rsatiladi.';
+}
+</script>
 </body>
 </html>
