@@ -3,150 +3,238 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MALISHBET LIVE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07130f">
+<title>MALISHBET PREMIUM</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#101318;color:white;font-family:Arial,sans-serif}
-#loader{position:fixed;inset:0;background:#101318;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .5s}
-.loadlogo{font-size:34px;font-weight:900;color:#20d99a;letter-spacing:2px}
-.loadsub{color:#aab5c2;margin:12px 0 30px;font-size:13px}
-.spinner{width:58px;height:58px;border:5px solid #29333c;border-top-color:#20d99a;border-radius:50%;animation:spin .8s linear infinite}
+:root{--bg:#08110e;--panel:#111d18;--panel2:#17251e;--green:#16d99a;--gold:#d8b76b;--muted:#91a49a}
+body{margin:0;background:var(--bg);color:#f5f8f5;font-family:Arial,sans-serif}
+button{font:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+/* PREMIUM LOADING */
+#loader{position:fixed;inset:0;z-index:99999;background:radial-gradient(ellipse at center,#17372a 0%,#09150f 48%,#050b08 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;overflow:hidden;transition:opacity .8s,visibility .8s}
+#loader:before,#loader:after{content:"";position:absolute;width:320px;height:320px;border:1px solid #d8b76b30;border-radius:50%;animation:orbit 9s linear infinite}
+#loader:after{width:410px;height:410px;border-color:#16d99a25;animation-direction:reverse}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.loader-logo{font-size:clamp(34px,8vw,58px);font-weight:900;letter-spacing:5px;background:linear-gradient(90deg,#16d99a,#e9d18d,#16d99a);background-size:200%;color:transparent;background-clip:text;animation:shine 2s linear infinite;z-index:1}
+@keyframes shine{to{background-position:200%}}
+.loader-sub{letter-spacing:5px;font-size:11px;color:#c7d6cc;margin-top:10px;z-index:1}
+.loader-ring{width:65px;height:65px;border:2px solid #ffffff18;border-top-color:var(--gold);border-right-color:var(--green);border-radius:50%;margin-top:40px;animation:spin 1s linear infinite;z-index:1}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loadingtext{color:#20d99a;margin-top:22px;font-size:13px;letter-spacing:3px}
-@media(prefers-reduced-motion:reduce){.spinner{animation-duration:4s}}
-header{height:68px;background:#1b212a;display:flex;align-items:center;justify-content:space-between;padding:0 5%;border-bottom:1px solid #303945}
-.logo{font-size:24px;font-weight:900;color:#20d99a}
-.logo span{color:white}
-.live{color:#ff5555;font-size:12px}
-.container{max-width:1250px;margin:auto;padding:18px}
-nav{display:flex;gap:9px;overflow-x:auto;padding:12px 0;border-bottom:1px solid #303945}
-nav a{background:#242c36;color:white;text-decoration:none;padding:11px 15px;border-radius:6px;white-space:nowrap;font-size:13px}
-.hero{margin:20px 0;padding:28px;border-radius:12px;background:linear-gradient(120deg,#153d34,#263746)}
-.hero h1{margin:0 0 12px;font-size:28px}
-.hero p{color:#c4d2cf;line-height:1.6}
-.heading{font-size:18px;margin:27px 0 15px}
-.sports{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-.sport{background:#202630;color:white;border:1px solid #303945;padding:16px 5px;border-radius:9px;cursor:pointer}
-.sport div{font-size:25px;margin-bottom:8px}
-.sport.active,.sport:hover{background:#20d99a;color:#101318}
-.layout{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:20px}
-.panel{background:#1b212a;border:1px solid #303945;border-radius:10px;overflow:hidden;margin-bottom:17px}
-.panelhead{padding:16px;border-bottom:1px solid #303945;font-weight:bold;display:flex;justify-content:space-between}
-.panelbody{padding:20px;color:#aeb7c4;text-align:center;line-height:1.7}
-.statgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.stat{background:#242c36;padding:18px;border-radius:8px}
-.stat strong{display:block;font-size:23px;color:#20d99a}
-.stat span{font-size:12px;color:#aeb7c4}
-footer{text-align:center;background:#1b212a;color:#9ba7b7;padding:25px;margin-top:30px}
-button{font-family:inherit}
-@media(max-width:700px){
-header{padding:0 14px}
-.container{padding:12px}
-.sports{grid-template-columns:repeat(3,1fr)}
-.layout{grid-template-columns:1fr}
-.hero h1{font-size:23px}
+.progress{width:210px;height:3px;background:#ffffff20;margin-top:22px;overflow:hidden;border-radius:10px;z-index:1}
+.progress span{display:block;width:0;height:100%;background:linear-gradient(90deg,var(--green),var(--gold));animation:progress 2.3s ease forwards}
+@keyframes progress{to{width:100%}}
+.loading-label{font-size:10px;letter-spacing:4px;color:var(--green);margin-top:16px;z-index:1}
+#loader.hide{opacity:0;visibility:hidden}
+
+/* MAIN */
+.topbar{height:75px;background:#0e1a14;border-bottom:1px solid #26382d;display:flex;align-items:center;justify-content:space-between;padding:0 4%;position:sticky;top:0;z-index:50}
+.brand{font-size:25px;font-weight:900;letter-spacing:2px;color:var(--green)}
+.brand span{color:var(--gold)}
+.brand small{display:block;font-size:8px;letter-spacing:4px;color:#9cac9f;margin-top:3px}
+.topright{display:flex;align-items:center;gap:12px}
+.topbtn{background:#1a2b21;border:1px solid #314637;color:white;padding:10px 14px;border-radius:8px}
+.status{font-size:11px;color:var(--green)}
+.shell{max-width:1500px;margin:auto;padding:20px 18px}
+.hero{background:linear-gradient(110deg,#143a2b,#10241b 55%,#352b17);border:1px solid #c5a85b45;border-radius:17px;padding:30px;position:relative;overflow:hidden}
+.hero:after{content:"M";position:absolute;right:30px;top:-55px;font-size:220px;font-weight:900;color:#ffffff08}
+.hero-label{color:var(--gold);font-size:10px;letter-spacing:4px}
+.hero h1{font-size:clamp(27px,5vw,43px);margin:12px 0}
+.hero p{color:#b6c9bc;line-height:1.7;max-width:570px;font-size:14px}
+.hero-badge{display:inline-block;border:1px solid #d8b76b66;color:var(--gold);padding:9px 14px;border-radius:30px;font-size:10px;letter-spacing:2px;margin-top:8px}
+.grid{display:grid;grid-template-columns:205px minmax(0,1fr) 265px;gap:17px;margin-top:20px}
+.panel{background:var(--panel);border:1px solid #26382d;border-radius:12px;overflow:hidden;margin-bottom:16px}
+.panel-title{padding:16px;border-bottom:1px solid #293b30;font-size:13px;font-weight:bold;letter-spacing:1px;display:flex;justify-content:space-between;align-items:center}
+.muted{color:var(--muted)}
+.green{color:var(--green)}
+.gold{color:var(--gold)}
+.sidebar-item{display:flex;align-items:center;gap:12px;padding:13px 15px;color:#c1cec5;font-size:13px;border-bottom:1px solid #ffffff08;cursor:pointer}
+.sidebar-item:hover,.sidebar-item.active{background:#193327;color:var(--green)}
+.sidebar-item b{font-size:19px;width:24px}
+.league{padding:13px 15px;border-bottom:1px solid #ffffff09;font-size:12px;color:#c0cbc3}
+.league span{float:right;color:var(--gold)}
+.sport-tabs{display:flex;gap:8px;overflow-x:auto;padding:13px}
+.sport-tab{background:#1a2820;color:#c5d1c8;border:1px solid #304337;padding:10px 13px;border-radius:8px;white-space:nowrap;font-size:12px}
+.sport-tab.active{background:var(--green);color:#07130e;border-color:var(--green);font-weight:bold}
+.match-card{padding:17px;border-bottom:1px solid #ffffff0c}
+.match-head{display:flex;justify-content:space-between;color:#8fa397;font-size:10px;margin-bottom:15px}
+.teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.team{text-align:center;font-size:12px;line-height:1.6}
+.team-icon{font-size:26px;display:block;margin-bottom:5px}
+.score{text-align:center;font-size:23px;font-weight:bold;color:var(--gold)}
+.match-foot{font-size:10px;color:#82968a;text-align:center;margin-top:12px}
+.notice{padding:12px;margin:12px;background:#182a20;border:1px solid #35503c;border-radius:8px;color:#a9bcb0;font-size:11px;line-height:1.6}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:13px}
+.stat{background:#19271f;border:1px solid #2b4032;padding:15px;border-radius:9px}
+.stat strong{font-size:20px;color:var(--gold);display:block;margin-bottom:6px}
+.stat small{font-size:10px;color:#9eafa3}
+.feature{padding:14px;border-bottom:1px solid #ffffff0a;font-size:12px;color:#c5d0c8}
+.feature b{color:var(--green);display:block;margin-bottom:6px}
+.footer{text-align:center;padding:30px;color:#71847a;font-size:11px;line-height:2;border-top:1px solid #26382d;margin-top:25px}
+.mobile-nav{display:none}
+@media(max-width:1050px){
+.grid{grid-template-columns:175px minmax(0,1fr)}
+.rightbar{grid-column:2}
+}
+@media(max-width:650px){
+.topbar{height:65px;padding:0 13px}
+.brand{font-size:20px}
+.status{display:none}
+.shell{padding:12px}
+.hero{padding:22px 17px}
+.hero:after{font-size:140px;right:0}
+.grid{grid-template-columns:1fr}
+.leftbar{display:none}
+.rightbar{grid-column:auto}
+.mobile-nav{display:flex;position:sticky;bottom:0;z-index:40;background:#102019;border-top:1px solid #344b3b;justify-content:space-around;padding:12px 3px}
+.mobile-nav a{font-size:10px;text-align:center;color:#b7c8bc}
+.mobile-nav b{display:block;font-size:19px;margin-bottom:4px}
 }
 </style>
 </head>
 <body>
 
 <div id="loader">
-<div class="loadlogo">MALISHBET</div>
-<div class="loadsub">INTERNATIONAL SPORTS CENTER</div>
-<div class="spinner"></div>
-<div class="loadingtext">YUKLANMOQDA...</div>
+<div class="loader-logo">MALISHBET</div>
+<div class="loader-sub">ULTIMATE SPORTS EXPERIENCE</div>
+<div class="loader-ring"></div>
+<div class="progress"><span></span></div>
+<div class="loading-label">LOADING PREMIUM WORLD</div>
 </div>
 
-<header>
-<div class="logo">MALISHBET <span>LIVE</span></div>
-<div class="live">● SPORTS CENTER</div>
+<header class="topbar">
+<div class="brand">MALISHBET<span> LIVE</span><small>INTERNATIONAL SPORTS</small></div>
+<div class="topright">
+<span class="status">● PREMIUM SPORTS CENTER</span>
+<button class="topbtn" onclick="document.getElementById('matches').scrollIntoView({behavior:'smooth'})">LIVE CENTER</button>
+</div>
 </header>
 
-<div class="container">
-<nav>
-<a href="#home">Bosh sahifa</a>
-<a href="#matches">Natijalar</a>
-<a href="#sports">Sport turlari</a>
-<a href="#stats">Statistika</a>
-<a href="#leagues">Ligalar</a>
-</nav>
-
-<section class="hero" id="home">
-<h1>WORLD SPORTS CENTER</h1>
-<p>Jahon sport olamidagi natijalar, musobaqalar va professional statistikalar bir joyda.</p>
-<div class="live">● MALISHBET LIVE</div>
+<main class="shell">
+<section class="hero">
+<div class="hero-label">WELCOME TO THE ELITE SPORTS WORLD</div>
+<h1>SPORT. PASSION. <span class="gold">EXCELLENCE.</span></h1>
+<p>Jahon sport olamining natijalari, musobaqalari, jamoalari va professional statistikasi uchun yagona xalqaro markaz.</p>
+<div class="hero-badge">✦ MALISHBET PREMIUM EXPERIENCE</div>
 </section>
 
-<h2 class="heading" id="sports">SPORT TURLARI</h2>
-<div class="sports">
-<button class="sport active" onclick="choose(this,'Futbol')"><div>⚽</div>Futbol</button>
-<button class="sport" onclick="choose(this,'Basketbol')"><div>🏀</div>Basketbol</button>
-<button class="sport" onclick="choose(this,'Tennis')"><div>🎾</div>Tennis</button>
-<button class="sport" onclick="choose(this,'Voleybol')"><div>🏐</div>Voleybol</button>
-<button class="sport" onclick="choose(this,'Xokkey')"><div>🏒</div>Xokkey</button>
-<button class="sport" onclick="choose(this,'Kriket')"><div>🏏</div>Kriket</button>
+<div class="grid">
+<aside class="leftbar">
+<section class="panel">
+<div class="panel-title">SPORT TURLARI</div>
+<div class="sidebar-item active" onclick="chooseSport('Futbol')"><b>⚽</b> Futbol</div>
+<div class="sidebar-item" onclick="chooseSport('Basketbol')"><b>🏀</b> Basketbol</div>
+<div class="sidebar-item" onclick="chooseSport('Tennis')"><b>🎾</b> Tennis</div>
+<div class="sidebar-item" onclick="chooseSport('Voleybol')"><b>🏐</b> Voleybol</div>
+<div class="sidebar-item" onclick="chooseSport('Xokkey')"><b>🏒</b> Xokkey</div>
+<div class="sidebar-item" onclick="chooseSport('Kriket')"><b>🏏</b> Kriket</div>
+</section>
+<section class="panel">
+<div class="panel-title">TOP LIGALAR</div>
+<div class="league">🇬🇧 Premier League <span>›</span></div>
+<div class="league">🇪🇸 La Liga <span>›</span></div>
+<div class="league">🇩🇪 Bundesliga <span>›</span></div>
+<div class="league">🇮🇹 Serie A <span>›</span></div>
+<div class="league">🇫🇷 Ligue 1 <span>›</span></div>
+<div class="league">🌍 Champions League <span>›</span></div>
+</section>
+</aside>
+
+<section class="center">
+<div class="panel">
+<div class="panel-title"><span>◈ SPORT MARKAZI</span><span class="green">GLOBAL</span></div>
+<div class="sport-tabs">
+<button class="sport-tab active" onclick="chooseSport('Futbol')">⚽ Futbol</button>
+<button class="sport-tab" onclick="chooseSport('Basketbol')">🏀 Basketbol</button>
+<button class="sport-tab" onclick="chooseSport('Tennis')">🎾 Tennis</button>
+<button class="sport-tab" onclick="chooseSport('Voleybol')">🏐 Voleybol</button>
+<button class="sport-tab" onclick="chooseSport('Xokkey')">🏒 Xokkey</button>
+<button class="sport-tab" onclick="chooseSport('Kriket')">🏏 Kriket</button>
+</div>
 </div>
 
-<div class="layout">
-<div>
 <section class="panel" id="matches">
-<div class="panelhead">
-<span id="matchtitle">⚽ FUTBOL NATIJALARI</span>
-<span class="live">LIVE</span>
+<div class="panel-title"><span id="match-title">⚽ FUTBOL — MATCH CENTER</span><span class="green">● LIVE CENTER</span></div>
+<div id="match-content">
+<div class="notice">Hozircha haqiqiy jonli natijalar manbasi ulanmagan. Quyidagi namunaviy kartalar haqiqiy o‘yin natijalari emas.</div>
+<div class="match-card">
+<div class="match-head"><span>PREMIER LEAGUE · DEMO</span><span class="gold">NAMUNA</span></div>
+<div class="teams">
+<div class="team"><span class="team-icon">🔴</span>Manchester United</div>
+<div class="score">— : —</div>
+<div class="team"><span class="team-icon">🔵</span>Manchester City</div>
 </div>
-<div class="panelbody" id="matchbody">
-Hozircha natijalar manbasi ulanmagan.
+<div class="match-foot">O‘yin ma’lumotlari kutilmoqda</div>
+</div>
+<div class="match-card">
+<div class="match-head"><span>LA LIGA · DEMO</span><span class="gold">NAMUNA</span></div>
+<div class="teams">
+<div class="team"><span class="team-icon">⚪</span>Real Madrid</div>
+<div class="score">— : —</div>
+<div class="team"><span class="team-icon">🔴</span>Barcelona</div>
+</div>
+<div class="match-foot">O‘yin ma’lumotlari kutilmoqda</div>
+</div>
 </div>
 </section>
 
-<section class="panel" id="leagues">
-<div class="panelhead">🏆 TURNIR JADVALLARI</div>
-<div class="panelbody">Xalqaro chempionatlar va ligalar jadvallari shu yerda ko‘rsatiladi.</div>
+<section class="panel">
+<div class="panel-title">🏆 TURNIR JADVALLARI</div>
+<div class="notice">Ligalar jadvali va reytinglari uchun rasmiy ma’lumotlar manbasi ulanadi.</div>
 </section>
-</div>
+</section>
 
-<div>
-<section class="panel" id="stats">
-<div class="panelhead">📊 STATISTIKA</div>
-<div class="panelbody">
-<div class="statgrid">
-<div class="stat"><strong>06</strong><span>Sport turlari</span></div>
-<div class="stat"><strong>🌍</strong><span>Xalqaro portal</span></div>
-<div class="stat"><strong>LIVE</strong><span>Jonli markaz</span></div>
-<div class="stat"><strong>24/7</strong><span>Sport axboroti</span></div>
-</div>
+<aside class="rightbar">
+<section class="panel">
+<div class="panel-title">◈ PREMIUM STATISTIKA</div>
+<div class="stat-grid">
+<div class="stat"><strong>06</strong><small>SPORT TURLARI</small></div>
+<div class="stat"><strong>24/7</strong><small>SPORT MARKAZI</small></div>
+<div class="stat"><strong>🌍</strong><small>GLOBAL</small></div>
+<div class="stat"><strong>PRO</strong><small>STATISTIKA</small></div>
 </div>
 </section>
 <section class="panel">
-<div class="panelhead">🌐 MALISHBET LIVE</div>
-<div class="panelbody">International Sports Results & Statistics</div>
+<div class="panel-title">✦ PLATFORM XIZMATLARI</div>
+<div class="feature"><b>LIVE CENTER</b>Jonli hisoblar va o‘yin kuzatuvi</div>
+<div class="feature"><b>PRO STATISTICS</b>Jamoalar va o‘yinchilar statistikasi</div>
+<div class="feature"><b>GLOBAL LEAGUES</b>Xalqaro turnirlar va chempionatlar</div>
+<div class="feature"><b>SPORT NEWS</b>Jahon sport yangiliklari</div>
 </section>
+</aside>
 </div>
-</div>
-</div>
-
-<footer>
-<div class="logo">MALISHBET LIVE</div>
-<p>International Sports Results & Statistics</p>
-<p>© 2026 MALISHBET</p>
+<footer class="footer">
+<div class="brand">MALISHBET <span>LIVE</span></div>
+INTERNATIONAL SPORTS RESULTS & STATISTICS<br>
+© 2026 MALISHBET. ALL RIGHTS RESERVED.
 </footer>
+</main>
+
+<nav class="mobile-nav">
+<a href="#home"><b>⌂</b>Bosh sahifa</a>
+<a href="#matches"><b>◉</b>Natijalar</a>
+<a href="#matches"><b>⚽</b>Sport</a>
+<a href="#leagues"><b>🏆</b>Ligalar</a>
+</nav>
 
 <script>
-window.addEventListener('load',function(){
-setTimeout(function(){
-const loader=document.getElementById('loader');
-loader.style.opacity='0';
-setTimeout(()=>loader.style.display='none',500);
-},1400);
+window.addEventListener('load',()=>{
+setTimeout(()=>document.getElementById('loader').classList.add('hide'),2500);
 });
 
-function choose(btn,name){
-document.querySelectorAll('.sport').forEach(x=>x.classList.remove('active'));
-btn.classList.add('active');
-document.getElementById('matchtitle').textContent='🏆 '+name.toUpperCase()+' NATIJALARI';
-document.getElementById('matchbody').textContent=
-name+' natijalari ma’lumotlar manbasi ulangach ko‘rsatiladi.';
+function chooseSport(name){
+document.getElementById('match-title').textContent='◈ '+name.toUpperCase()+' — MATCH CENTER';
+document.getElementById('match-content').innerHTML=
+'<div class="notice">'+name+' bo‘yicha haqiqiy natijalar hali ma’lumotlar manbasiga ulanmagan. Bu bo‘lim keyingi bosqichda to‘ldiriladi.</div>';
+document.querySelectorAll('.sport-tab').forEach(b=>{
+b.classList.toggle('active',b.textContent.toLowerCase().includes(name.toLowerCase()));
+});
+document.querySelectorAll('.sidebar-item').forEach(b=>{
+b.classList.toggle('active',b.textContent.toLowerCase().includes(name.toLowerCase()));
+});
+document.getElementById('matches').scrollIntoView({behavior:'smooth',block:'start'});
 }
 </script>
 </body>
