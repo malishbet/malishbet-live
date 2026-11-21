@@ -1,172 +1,135 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MALISHBET LIVE — Sports Center</title>
+<meta name="theme-color" content="#07111f">
+<title>MALISHBET — Sport natijalari</title>
 <style>
+:root{--bg:#07111f;--panel:#101e30;--panel2:#16263a;--text:#f4f7fb;--muted:#9aabc0;--green:#19d69a;--line:#26384d}
 *{box-sizing:border-box}
-body{margin:0;background:#071426;color:#f3f7ff;font-family:Arial,sans-serif}
-header{background:#0d203a;border-bottom:1px solid #203a5c;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.logo{font-size:25px;font-weight:900;color:#42a5ff;letter-spacing:1px}
-.logo span{color:white}
-select,input{background:#132b49;color:white;border:1px solid #315477;padding:11px;border-radius:8px}
-nav{display:flex;gap:10px;overflow-x:auto;padding:15px 5%;background:#0a1b30}
-nav button,.sport{background:#122b49;color:#dceaff;border:1px solid #294766;border-radius:9px;padding:12px 16px;white-space:nowrap;cursor:pointer}
-nav button.active,.sport.active{background:#0878db;color:white}
-main{max-width:1200px;margin:auto;padding:25px 5%}
-.hero{background:linear-gradient(110deg,#103968,#0876c9);padding:28px;border-radius:16px;margin-bottom:22px}
-.hero h1{margin:0 0 10px;font-size:30px}
-.hero p{margin:0;color:#d4eaff}
-.section-title{font-size:21px;margin:25px 0 14px}
-.sports{display:flex;flex-wrap:wrap;gap:9px}
-.match-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.match{background:#102541;border:1px solid #254263;border-radius:13px;padding:17px}
-.match-top{display:flex;justify-content:space-between;color:#9bb6d5;font-size:13px;margin-bottom:15px}
-.live{color:#4ee69b;font-weight:bold}
-.teams{display:flex;justify-content:space-between;align-items:center;gap:8px;font-weight:bold}
-.score{font-size:24px;color:#54b5ff;white-space:nowrap}
-.match-bottom{border-top:1px solid #29415f;margin-top:14px;padding-top:12px;color:#91aaca;font-size:13px}
-.tools{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.tools input{flex:1;min-width:180px}
-footer{text-align:center;padding:25px;color:#7892b1;border-top:1px solid #1e3858;margin-top:35px}
-button:hover{filter:brightness(1.2)}
-[dir=rtl]{direction:rtl;text-align:right}
-@media(max-width:600px){.hero h1{font-size:23px}header{padding:15px}.logo{font-size:21px}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+header{background:#0b192a;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top{max-width:1200px;margin:auto;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:25px;font-weight:900;letter-spacing:1px;color:white}
+.logo span{color:var(--green)}
+select{background:var(--panel2);color:white;border:1px solid var(--line);padding:10px;border-radius:8px}
+nav{display:flex;gap:20px;max-width:1200px;margin:auto;padding:0 16px 14px;overflow:auto}
+nav a{color:var(--muted);text-decoration:none;white-space:nowrap;font-size:14px}
+nav a:hover{color:var(--green)}
+.container{max-width:1200px;margin:auto;padding:22px 16px}
+.hero{padding:28px;border-radius:16px;background:linear-gradient(120deg,#123c43,#10233a 65%,#17233a);margin-bottom:22px}
+.hero h1{font-size:32px;margin:0 0 10px}
+.hero p{color:#c0d2df;line-height:1.6;margin:0}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:26px 0 14px}
+.section-title h2{font-size:20px;margin:0}
+.section-title span{color:var(--green);font-size:13px}
+.sports{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.sport{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 6px;text-align:center;font-size:13px;color:#dce7f2}
+.sport b{display:block;font-size:23px;margin-bottom:8px}
+.sport:hover{border-color:var(--green)}
+.matches{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.match{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.match-top{display:flex;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:16px}
+.teams{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:bold}
+.team{text-align:center;flex:1}
+.team small{display:block;color:var(--muted);font-weight:normal;margin-top:6px}
+.score{font-size:20px;color:var(--green);white-space:nowrap}
+.tag{font-size:10px;color:#ffce70;border:1px solid #705b32;padding:4px 7px;border-radius:5px}
+.info{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;color:var(--muted);line-height:1.7}
+footer{border-top:1px solid var(--line);margin-top:40px;padding:25px 16px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:700px){.sports{grid-template-columns:repeat(3,1fr)}.matches{grid-template-columns:1fr}.hero h1{font-size:25px}.container{padding:16px 12px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="logo">MALISHBET <span>LIVE</span></div>
-  <select id="language" aria-label="Language">
-    <option value="uz">🇺🇿 O‘zbekcha</option>
-    <option value="ru">🇷🇺 Русский</option>
-    <option value="en">🇬🇧 English</option>
-    <option value="tr">🇹🇷 Türkçe</option>
-    <option value="kk">🇰🇿 Қазақша</option>
-    <option value="ar">🇸🇦 العربية</option>
-    <option value="tg">🇹🇯 Тоҷикӣ</option>
-    <option value="fa">🇮🇷 فارسی</option>
-  </select>
-</header>
-
+<div class="top">
+<div class="logo">MALISH<span>BET</span></div>
+<select id="lang" aria-label="Language">
+<option value="uz">O‘zbekcha</option>
+<option value="ru">Русский</option>
+<option value="en">English</option>
+<option value="tr">Türkçe</option>
+<option value="kk">Қазақша</option>
+<option value="ar">العربية</option>
+<option value="tg">Тоҷикӣ</option>
+<option value="fa">فارسی</option>
+</select>
+</div>
 <nav>
-  <button class="active" data-tab="all" id="allTab">Barcha sportlar</button>
-  <button data-tab="live" id="liveTab">Jonli</button>
-  <button data-tab="upcoming" id="upcomingTab">Bo‘lajak</button>
+<a href="#matches" data-i="nav1">O‘yinlar</a>
+<a href="#sports" data-i="nav2">Sport turlari</a>
+<a href="#tables" data-i="nav3">Turnir jadvallari</a>
+<a href="#about" data-i="nav4">Biz haqimizda</a>
 </nav>
+</header>
+<main class="container">
+<section class="hero">
+<h1 data-i="hero">Barcha sport natijalari — bir joyda</h1>
+<p data-i="sub">MALISHBET — sport olamidagi yangiliklar, uchrashuvlar va natijalar markazi.</p>
+</section>
 
-<main>
-  <section class="hero">
-    <h1 id="welcome">Barcha sport natijalari — bir joyda</h1>
-    <p id="subtitle">Sport yangiliklari, uchrashuvlar, natijalar va turnirlar</p>
-  </section>
+<div class="section-title" id="sports"><h2 data-i="sports">Sport turlari</h2><span>18 SPORTS</span></div>
+<div class="sports">
+<div class="sport"><b>⚽</b>Futbol</div>
+<div class="sport"><b>🏀</b>Basketbol</div>
+<div class="sport"><b>🎾</b>Tennis</div>
+<div class="sport"><b>🏐</b>Voleybol</div>
+<div class="sport"><b>🏒</b>Xokkey</div>
+<div class="sport"><b>🏏</b>Kriket</div>
+<div class="sport"><b>🥊</b>Boks</div>
+<div class="sport"><b>🥋</b>MMA</div>
+<div class="sport"><b>🏓</b>Stol tennisi</div>
+<div class="sport"><b>🏈</b>Amerika futboli</div>
+<div class="sport"><b>🏉</b>Regbi</div>
+<div class="sport"><b>⛳</b>Golf</div>
+<div class="sport"><b>🏸</b>Badminton</div>
+<div class="sport"><b>🤾</b>Gandbol</div>
+<div class="sport"><b>🎱</b>Bilyard</div>
+<div class="sport"><b>🏎️</b>Avtosport</div>
+<div class="sport"><b>🏊</b>Suzish</div>
+<div class="sport"><b>♟️</b>Shaxmat</div>
+</div>
 
-  <h2 class="section-title" id="sportsTitle">Sport turlari</h2>
-  <div class="sports" id="sports"></div>
+<div class="section-title" id="matches"><h2 data-i="matches">Uchrashuvlar</h2><span data-i="sample">NAMUNAVIY KO‘RINISH</span></div>
+<div class="matches">
+<div class="match">
+<div class="match-top"><span>⚽ FUTBOL</span><span class="tag">DEMO</span></div>
+<div class="teams"><div class="team">Team A<small>Mezbon</small></div><div class="score">— : —</div><div class="team">Team B<small>Mehmon</small></div></div>
+</div>
+<div class="match">
+<div class="match-top"><span>🏀 BASKETBOL</span><span class="tag">DEMO</span></div>
+<div class="teams"><div class="team">Team C<small>Mezbon</small></div><div class="score">— : —</div><div class="team">Team D<small>Mehmon</small></div></div>
+</div>
+</div>
 
-  <div class="tools">
-    <input id="search" placeholder="Jamoa yoki musobaqani qidiring...">
-  </div>
+<div class="section-title" id="tables"><h2 data-i="tables">Turnir jadvallari</h2></div>
+<div class="info" data-i="tableinfo">Ligalar va jamoalar reytinglari bo‘limi. Haqiqiy jadval ma’lumotlari sport ma’lumotlari manbasi ulangandan keyin ko‘rsatiladi.</div>
 
-  <h2 class="section-title" id="matchesTitle">Uchrashuvlar</h2>
-  <div class="match-grid" id="matches"></div>
-
-  <h2 class="section-title" id="infoTitle">MALISHBET LIVE</h2>
-  <p id="infoText">18 ta sport turi bo‘yicha natijalar va musobaqalar markazi.</p>
+<div class="section-title" id="about"><h2 data-i="about">MALISHBET haqida</h2></div>
+<div class="info" data-i="aboutinfo">MALISHBET — xalqaro sport axborot portali. Maqsadimiz: sport ishqibozlariga qulay, tezkor va tushunarli ma’lumot taqdim etish.</div>
 </main>
-
-<footer>© 2026 MALISHBET LIVE · Sports Information Center</footer>
-
+<footer>© 2026 MALISHBET. <span data-i="rights">Barcha huquqlar himoyalangan.</span></footer>
 <script>
-const sports=[
- ["football","⚽","Futbol"],["basketball","🏀","Basketbol"],
- ["tennis","🎾","Tennis"],["volleyball","🏐","Voleybol"],
- ["hockey","🏒","Xokkey"],["cricket","🏏","Kriket"],
- ["tabletennis","🏓","Stol tennisi"],["badminton","🏸","Badminton"],
- ["handball","🤾","Gandbol"],["rugby","🏉","Regbi"],
- ["baseball","⚾","Beysbol"],["futsal","🥅","Futzal"],
- ["boxing","🥊","Boks"],["mma","🥋","MMA"],
- ["athletics","🏃","Yengil atletika"],["cycling","🚴","Velosport"],
- ["motorsport","🏎️","Avtosport"],["esports","🎮","Kibersport"]
-];
-
-const translations={
-uz:{all:"Barcha sportlar",live:"Jonli",upcoming:"Bo‘lajak",welcome:"Barcha sport natijalari — bir joyda",subtitle:"Sport yangiliklari, uchrashuvlar, natijalar va turnirlar",sports:"Sport turlari",matches:"Uchrashuvlar",search:"Jamoa yoki musobaqani qidiring...",info:"18 ta sport turi bo‘yicha natijalar va musobaqalar markazi",status:"NAMUNAVIY",today:"Bugungi uchrashuv"},
-ru:{all:"Все виды спорта",live:"В эфире",upcoming:"Предстоящие",welcome:"Все спортивные результаты — в одном месте",subtitle:"Новости, матчи, результаты и турниры",sports:"Виды спорта",matches:"Матчи",search:"Поиск команды или турнира...",info:"Центр результатов и турниров по 18 видам спорта",status:"ДЕМО",today:"Сегодняшний матч"},
-en:{all:"All sports",live:"Live",upcoming:"Upcoming",welcome:"All sports results in one place",subtitle:"Sports news, matches, results and tournaments",sports:"Sports",matches:"Matches",search:"Search team or competition...",info:"Results and tournament center for 18 sports",status:"DEMO",today:"Today's match"},
-tr:{all:"Tüm sporlar",live:"Canlı",upcoming:"Yaklaşan",welcome:"Tüm spor sonuçları tek yerde",subtitle:"Spor haberleri, maçlar ve turnuvalar",sports:"Spor dalları",matches:"Maçlar",search:"Takım veya turnuva ara...",info:"18 spor dalı için sonuç ve turnuva merkezi",status:"ÖRNEK",today:"Bugünün maçı"},
-kk:{all:"Барлық спорт",live:"Тікелей",upcoming:"Алдағы",welcome:"Барлық спорт нәтижелері бір жерде",subtitle:"Жаңалықтар, матчтар және турнирлер",sports:"Спорт түрлері",matches:"Матчтар",search:"Команда немесе турнир іздеу...",info:"18 спорт түрі бойынша нәтижелер орталығы",status:"ҮЛГІ",today:"Бүгінгі матч"},
-ar:{all:"كل الرياضات",live:"مباشر",upcoming:"القادمة",welcome:"جميع النتائج الرياضية في مكان واحد",subtitle:"أخبار ونتائج ومباريات وبطولات",sports:"الرياضات",matches:"المباريات",search:"ابحث عن فريق أو بطولة...",info:"مركز نتائج وبطولات 18 رياضة",status:"تجريبي",today:"مباراة اليوم"},
-tg:{all:"Ҳамаи намудҳои варзиш",live:"Зинда",upcoming:"Оянда",welcome:"Ҳамаи натиҷаҳои варзиш дар як ҷо",subtitle:"Хабарҳо, бозиҳо ва мусобиқаҳо",sports:"Намудҳои варзиш",matches:"Бозиҳо",search:"Ҷустуҷӯи даста ё мусобиқа...",info:"Маркази натиҷаҳои 18 намуди варзиш",status:"НАМУНА",today:"Бозии имрӯз"},
-fa:{all:"همه ورزش‌ها",live:"زنده",upcoming:"پیش رو",welcome:"همه نتایج ورزشی در یک مکان",subtitle:"اخبار، مسابقات و نتایج ورزشی",sports:"ورزش‌ها",matches:"مسابقات",search:"جستجوی تیم یا رقابت...",info:"مرکز نتایج و مسابقات ۱۸ رشته ورزشی",status:"نمونه",today:"مسابقه امروز"}
+const words={
+uz:{nav1:"O‘yinlar",nav2:"Sport turlari",nav3:"Turnir jadvallari",nav4:"Biz haqimizda",hero:"Barcha sport natijalari — bir joyda",sub:"MALISHBET — sport olamidagi yangiliklar, uchrashuvlar va natijalar markazi.",sports:"Sport turlari",matches:"Uchrashuvlar",sample:"NAMUNAVIY KO‘RINISH",tables:"Turnir jadvallari",tableinfo:"Ligalar va jamoalar reytinglari bo‘limi. Haqiqiy jadval ma’lumotlari sport ma’lumotlari manbasi ulangandan keyin ko‘rsatiladi.",about:"MALISHBET haqida",aboutinfo:"MALISHBET — xalqaro sport axborot portali. Maqsadimiz: sport ishqibozlariga qulay, tezkor va tushunarli ma’lumot taqdim etish.",rights:"Barcha huquqlar himoyalangan."},
+ru:{nav1:"Матчи",nav2:"Виды спорта",nav3:"Турнирные таблицы",nav4:"О нас",hero:"Все спортивные результаты — в одном месте",sub:"MALISHBET — центр спортивных новостей, матчей и результатов.",sports:"Виды спорта",matches:"Матчи",sample:"ДЕМО-ВЕРСИЯ",tables:"Турнирные таблицы",tableinfo:"Таблицы лиг и рейтинги команд. Реальные данные появятся после подключения источника спортивной информации.",about:"О MALISHBET",aboutinfo:"MALISHBET — международный спортивный информационный портал.",rights:"Все права защищены."},
+en:{nav1:"Matches",nav2:"Sports",nav3:"Standings",nav4:"About",hero:"All sports results in one place",sub:"MALISHBET — your hub for sports news, fixtures and results.",sports:"Sports",matches:"Matches",sample:"DEMO PREVIEW",tables:"League standings",tableinfo:"League tables and team rankings. Real data will appear after a sports data provider is connected.",about:"About MALISHBET",aboutinfo:"MALISHBET is an international sports information portal.",rights:"All rights reserved."},
+tr:{nav1:"Maçlar",nav2:"Sporlar",nav3:"Puan Durumu",nav4:"Hakkımızda",hero:"Tüm spor sonuçları tek yerde",sub:"MALISHBET — spor haberleri, maçlar ve sonuçlar merkezi.",sports:"Spor dalları",matches:"Maçlar",sample:"ÖRNEK GÖRÜNÜM",tables:"Lig sıralamaları",tableinfo:"Gerçek veriler, spor veri kaynağı bağlandıktan sonra gösterilecektir.",about:"MALISHBET hakkında",aboutinfo:"MALISHBET uluslararası bir spor bilgi portalıdır.",rights:"Tüm hakları saklıdır."},
+kk:{nav1:"Матчтар",nav2:"Спорт түрлері",nav3:"Кестелер",nav4:"Біз туралы",hero:"Барлық спорт нәтижелері бір жерде",sub:"MALISHBET — спорт жаңалықтары мен нәтижелер орталығы.",sports:"Спорт түрлері",matches:"Матчтар",sample:"ҮЛГІ",tables:"Турнир кестелері",tableinfo:"Нақты деректер спорттық дерек көзі қосылғаннан кейін көрсетіледі.",about:"MALISHBET туралы",aboutinfo:"MALISHBET — халықаралық спорт ақпараттық порталы.",rights:"Барлық құқықтар қорғалған."},
+ar:{nav1:"المباريات",nav2:"الرياضات",nav3:"الترتيب",nav4:"معلومات عنا",hero:"جميع النتائج الرياضية في مكان واحد",sub:"MALISHBET — مركز أخبار ونتائج الرياضة.",sports:"الرياضات",matches:"المباريات",sample:"عرض تجريبي",tables:"جداول الترتيب",tableinfo:"ستظهر البيانات الحقيقية بعد ربط مصدر البيانات الرياضية.",about:"عن MALISHBET",aboutinfo:"MALISHBET بوابة معلومات رياضية دولية.",rights:"جميع الحقوق محفوظة."},
+tg:{nav1:"Бозиҳо",nav2:"Намудҳои варзиш",nav3:"Ҷадвалҳо",nav4:"Дар бораи мо",hero:"Ҳамаи натиҷаҳои варзиш дар як ҷо",sub:"MALISHBET — маркази хабарҳо ва натиҷаҳои варзиш.",sports:"Намудҳои варзиш",matches:"Бозиҳо",sample:"НАМУНА",tables:"Ҷадвалҳои мусобиқа",tableinfo:"Маълумоти воқеӣ пас аз пайваст кардани манбаи варзишӣ намоиш дода мешавад.",about:"Дар бораи MALISHBET",aboutinfo:"MALISHBET портали байналмилалии иттилооти варзишӣ мебошад.",rights:"Ҳамаи ҳуқуқҳо ҳифз шудаанд."},
+fa:{nav1:"مسابقات",nav2:"ورزش‌ها",nav3:"جدول‌ها",nav4:"درباره ما",hero:"تمام نتایج ورزشی در یک مکان",sub:"MALISHBET — مرکز اخبار و نتایج ورزشی.",sports:"ورزش‌ها",matches:"مسابقات",sample:"نمایش آزمایشی",tables:"جدول مسابقات",tableinfo:"اطلاعات واقعی پس از اتصال منبع داده ورزشی نمایش داده می‌شود.",about:"درباره MALISHBET",aboutinfo:"MALISHBET یک پورتال بین‌المللی اطلاعات ورزشی است.",rights:"تمام حقوق محفوظ است."}
 };
-
-const sample=[
- {sport:"football",a:"Team Alpha",b:"Team Beta",score:"2 : 1",state:"live"},
- {sport:"basketball",a:"City Stars",b:"United Club",score:"78 : 72",state:"live"},
- {sport:"tennis",a:"Player A",b:"Player B",score:"1 : 0",state:"upcoming"},
- {sport:"volleyball",a:"North Team",b:"South Team",score:"— : —",state:"upcoming"},
- {sport:"hockey",a:"Ice Club",b:"Snow Club",score:"3 : 2",state:"live"},
- {sport:"cricket",a:"Blue XI",b:"Red XI",score:"— : —",state:"upcoming"}
-];
-
-let selected="all",tab="all";
-const sportsBox=document.getElementById("sports");
-const matchesBox=document.getElementById("matches");
-
-function renderSports(){
- sportsBox.innerHTML="";
- sports.forEach(s=>{
-  const b=document.createElement("button");
-  b.className="sport"+(selected===s[0]?" active":"");
-  b.textContent=s[1]+" "+s[2];
-  b.onclick=()=>{selected=s[0];renderSports();renderMatches()};
-  sportsBox.appendChild(b);
- });
-}
-function renderMatches(){
- const q=document.getElementById("search").value.toLowerCase();
- const rows=sample.filter(m=>(selected==="all"||m.sport===selected)&&(tab==="all"||m.state===tab)&&(m.a+" "+m.b).toLowerCase().includes(q));
- matchesBox.innerHTML="";
- if(!rows.length){matchesBox.textContent="Hozircha uchrashuv topilmadi.";return}
- rows.forEach(m=>{
-  const card=document.createElement("article");
-  card.className="match";
-  const sport=sports.find(s=>s[0]===m.sport);
-  card.innerHTML=`<div class="match-top"><span>${sport[1]} ${sport[2]}</span><span class="${m.state==="live"?"live":""}">${m.state==="live"?"● LIVE":"SOON"}</span></div><div class="teams"><span>${m.a}</span><span class="score">${m.score}</span><span>${m.b}</span></div><div class="match-bottom">${translations[language].status} · ${translations[language].today}</div>`;
-  matchesBox.appendChild(card);
- });
-}
-let language=localStorage.getItem("malishbet-language")||"uz";
-function setLanguage(lang){
- language=lang;
- localStorage.setItem("malishbet-language",lang);
- const t=translations[lang];
- document.documentElement.lang=lang;
- document.documentElement.dir=(lang==="ar"||lang==="fa")?"rtl":"ltr";
- document.getElementById("allTab").textContent=t.all;
- document.getElementById("liveTab").textContent=t.live;
- document.getElementById("upcomingTab").textContent=t.upcoming;
- document.getElementById("welcome").textContent=t.welcome;
- document.getElementById("subtitle").textContent=t.subtitle;
- document.getElementById("sportsTitle").textContent=t.sports;
- document.getElementById("matchesTitle").textContent=t.matches;
- document.getElementById("search").placeholder=t.search;
- document.getElementById("infoText").textContent=t.info;
- document.getElementById("language").value=lang;
- renderMatches();
-}
-document.getElementById("language").onchange=e=>setLanguage(e.target.value);
-document.getElementById("search").oninput=renderMatches;
-document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{
- tab=b.dataset.tab;
- document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
- b.classList.add("active");renderMatches();
+document.getElementById("lang").addEventListener("change",e=>{
+const lang=e.target.value;
+document.documentElement.lang=lang;
+document.documentElement.dir=(lang==="ar"||lang==="fa")?"rtl":"ltr";
+document.querySelectorAll("[data-i]").forEach(el=>{
+const key=el.dataset.i;
+if(words[lang][key])el.textContent=words[lang][key];
 });
-renderSports();
-setLanguage(language);
+});
 </script>
 </body>
 </html>
